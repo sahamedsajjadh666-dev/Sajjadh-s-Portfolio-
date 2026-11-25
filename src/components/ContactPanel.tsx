@@ -7,7 +7,7 @@ import {
   Send,
 } from 'lucide-react';
 import { PORTFOLIO_PROFILE } from '../data/portfolioData';
-import { validateContactForm } from '../utils/portfolioLogic';
+import { buildWhatsAppUrl, validateContactForm } from '../utils/portfolioLogic';
 
 const KATANA_EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -26,6 +26,13 @@ export function ContactPanel() {
       setSubmitted(false);
       return;
     }
+
+    const whatsappUrl = buildWhatsAppUrl(
+      { name, email, message },
+      PORTFOLIO_PROFILE.whatsappNumber,
+    );
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
     setErrors({});
     setSubmitted(true);
     setName('');
@@ -117,20 +124,6 @@ export function ContactPanel() {
               inquiries.
             </p>
 
-            {submitted && (
-              <div
-                role="status"
-                className="mb-5 p-4 rounded-xl border border-[#F472B6] dark:border-[#D4AF37] bg-[#FCE7F3]/50 dark:bg-[#D4AF37]/10 text-[#0F172A] dark:text-[#F8FAFC]"
-              >
-                <p className="font-bold text-sm">
-                  Message recorded for {PORTFOLIO_PROFILE.displayName}.
-                </p>
-                <p className="text-xs text-[#475569] dark:text-slate-300 mt-1">
-                  For immediate follow-up, email {PORTFOLIO_PROFILE.email}.
-                </p>
-              </div>
-            )}
-
             <form onSubmit={handleSubmit} noValidate className="space-y-4">
               <div>
                 <label
@@ -142,6 +135,7 @@ export function ContactPanel() {
                 <input
                   id="contact-name"
                   type="text"
+                  required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Aarav Nair"
@@ -164,6 +158,7 @@ export function ContactPanel() {
                 <input
                   id="contact-email"
                   type="email"
+                  required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@domain.com"
@@ -186,6 +181,7 @@ export function ContactPanel() {
                 <textarea
                   id="contact-message"
                   rows={4}
+                  required
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Share project details, collaboration ideas, or feedback..."
@@ -210,6 +206,15 @@ export function ContactPanel() {
                   <span>Send Message</span>
                 </span>
               </button>
+
+              {submitted && (
+                <p
+                  role="status"
+                  className="text-center text-xs font-semibold text-[#475569] dark:text-slate-300 pt-1"
+                >
+                  Opening WhatsApp with your message...
+                </p>
+              )}
             </form>
           </motion.div>
         </div>

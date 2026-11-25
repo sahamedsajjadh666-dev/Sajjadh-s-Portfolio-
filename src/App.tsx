@@ -24,7 +24,6 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(
     null,
   );
-  const [bookModalOpen, setBookModalOpen] = useState(false);
   const [theme, setTheme] = useState<ThemeMode>(() => {
     try {
       return resolveInitialTheme(window.localStorage.getItem(THEME_STORAGE_KEY));
@@ -68,7 +67,7 @@ export default function App() {
           <KatanaDivider idPrefix="skill-project" theme={theme} />
           <ProjectsGrid onSelectProject={(project) => setSelectedProject(project)} />
           <KatanaDivider idPrefix="project-published" theme={theme} />
-          <BookBonusArc onOpenBookModal={() => setBookModalOpen(true)} />
+          <BookBonusArc />
         </main>
 
         <KatanaDivider idPrefix="published-contact" theme={theme} noOverlap />
@@ -76,9 +75,7 @@ export default function App() {
 
         <PortfolioModals
           selectedProject={selectedProject}
-          bookModalOpen={bookModalOpen}
           onCloseProject={() => setSelectedProject(null)}
-          onCloseBookModal={() => setBookModalOpen(false)}
         />
       </div>
     </MotionConfig>

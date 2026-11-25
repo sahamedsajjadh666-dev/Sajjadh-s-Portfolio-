@@ -5,6 +5,7 @@ import type { ThemeMode } from '../utils/portfolioLogic';
 import { MangaImage } from './MangaImage';
 import { WatercolorSakuraBackdrop } from './WatercolorSakuraBackdrop';
 import { InteractiveTiltCard } from './InteractiveTiltCard';
+import { SakuraVaporCanvas } from './SakuraVaporCanvas';
 
 const KATANA_EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -42,7 +43,7 @@ export function HeroSpread({ theme = 'light' }: HeroSpreadProps) {
       <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6">
         {/* Balanced 2-Column Editorial Split (60% Content / 40% Portrait) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Column (60%): Unsheathing Katana Reveal */}
+          {/* Left Column (60%): Interactive HTML5 Canvas Sakura Vapor Type + Katana Reveal */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -53,17 +54,12 @@ export function HeroSpread({ theme = 'light' }: HeroSpreadProps) {
               {PORTFOLIO_PROFILE.heroTag}
             </motion.p>
 
-            {/* Top Split-Mask Container: Headline cut open upward by the blade */}
-            <div className="overflow-hidden pb-1">
-              <motion.h1
-                initial={{ y: '105%' }}
-                animate={{ y: '0%' }}
-                transition={{ duration: 0.48, delay: 0.72, ease: KATANA_EASE }}
-                className="font-samurai-name uppercase text-3xl sm:text-5xl xl:text-[3.2rem] leading-[1.08] tracking-[0.06em] text-balance"
-              >
-                {PORTFOLIO_PROFILE.displayName}
-              </motion.h1>
-            </div>
+            {/* Interactive Fine-Grain HTML5 Canvas Sakura Vapor Headline */}
+            <SakuraVaporCanvas
+              text={PORTFOLIO_PROFILE.displayName}
+              theme={theme}
+              className="uppercase text-3xl sm:text-5xl xl:text-[3.2rem] leading-[1.08] tracking-[0.06em] text-balance"
+            />
 
             {/* 2px Razor-Thin Blade Slash Line + Traveling Spark + Tip Sakura Release */}
             <div className="relative w-full max-w-xl my-4 overflow-visible">

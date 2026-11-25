@@ -1,17 +1,13 @@
 import { useState, type MouseEvent } from 'react';
 import { motion } from 'motion/react';
-import { BookOpen } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { PUBLISHED_WORK, PORTFOLIO_PROFILE } from '../data/portfolioData';
 import { computeBookTilt } from '../utils/portfolioLogic';
 import { MangaImage } from './MangaImage';
 
-interface BookBonusArcProps {
-  onOpenBookModal: () => void;
-}
-
 const KATANA_EASE = [0.16, 1, 0.3, 1] as const;
 
-export function BookBonusArc({ onOpenBookModal }: BookBonusArcProps) {
+export function BookBonusArc() {
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
   const [bookHovered, setBookHovered] = useState(false);
 
@@ -70,7 +66,7 @@ export function BookBonusArc({ onOpenBookModal }: BookBonusArcProps) {
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 data-testid="book-3d-cover"
-                className="w-44 sm:w-48 cursor-pointer select-none"
+                className="w-44 sm:w-48 cursor-default select-none"
                 style={{ perspective: '900px' }}
               >
                 <div
@@ -120,16 +116,9 @@ export function BookBonusArc({ onOpenBookModal }: BookBonusArcProps) {
               </div>
 
               <div className="flex flex-wrap items-center gap-4">
-                <button
-                  type="button"
-                  onClick={onOpenBookModal}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold whitespace-nowrap shrink-0 arch-outline-btn hover:border-[#DC2626] dark:hover:border-[#D4AF37] hover:text-[#DC2626] dark:hover:text-[#E5C158] cursor-pointer"
-                >
-                  <BookOpen className="w-4 h-4" aria-hidden="true" />
-                  <span>View Book</span>
-                </button>
-                <span className="font-mono-tech text-xs text-[#64748B] dark:text-slate-400">
-                  Read Chapter 1 excerpt preview
+                <span className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-300 dark:border-[#D4AF37]/45 bg-white dark:bg-[#0B0F19] text-sm font-semibold text-[#0F172A] dark:text-[#E5C158] whitespace-nowrap shrink-0">
+                  <Clock className="w-4 h-4 text-[#DC2626] dark:text-[#D4AF37]" aria-hidden="true" />
+                  <span>Coming Soon</span>
                 </span>
               </div>
             </div>

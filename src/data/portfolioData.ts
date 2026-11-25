@@ -58,6 +58,7 @@ export const PORTFOLIO_PROFILE = {
   name: 'S. Ahamed Sajjadh',
   displayName: 'S. AHAMED SAJJADH',
   email: 'sahamedsajjadh666@gmail.com',
+  whatsappNumber: '916369117287', // Replace with your country code + WhatsApp number (digits only)
   portraitSrc: '/src/assets/images/enhanced_portrait_hd_1795493289578.jpg',
   portraitAlt:
     'Portrait of S. Ahamed Sajjadh wearing glasses and a pastel pink collared shirt',
@@ -71,14 +72,14 @@ export const PORTFOLIO_PROFILE = {
     {
       id: 'github',
       label: 'GitHub',
-      href: 'https://github.com',
-      handle: 'github.com/sajjadh-ml',
+      href: 'https://github.com/sahamedsajjadh666-dev',
+      handle: 'github.com/sahamedsajjadh666-dev',
     },
     {
       id: 'linkedin',
       label: 'LinkedIn',
-      href: 'https://linkedin.com',
-      handle: 'linkedin.com/in/s-ahamed-sajjadh',
+      href: 'https://www.linkedin.com/in/s-ahamed-sajjadh-324a62327?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+      handle: 'linkedin.com/in/s-ahamed-sajjadh-324a62327',
     },
     {
       id: 'email',
@@ -255,7 +256,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     impactMetric: 'Real-Time GPS Telemetry',
     impactContext: 'Live LCD threshold alerts paired with Wi-Fi violation logging',
     tags: ['IoT', 'NodeMCU ESP8266', 'GPS', 'Embedded Systems'],
-    githubUrl: 'https://github.com',
+    githubUrl: 'https://github.com/sahamedsajjadh666-dev',
   },
   {
     id: 'voicemirror-assistive-app',
@@ -273,7 +274,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     impactMetric: 'Inclusive Speech Feedback',
     impactContext: 'Guided vocal mirroring tailored for calm daily communication practice',
     tags: ['Assistive Tech', 'Speech Processing', 'UI/UX'],
-    githubUrl: 'https://github.com',
+    githubUrl: 'https://github.com/sahamedsajjadh666-dev',
   },
   {
     id: 'online-medical-portal',
@@ -291,7 +292,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     impactMetric: 'Unified Patient Flow',
     impactContext: 'Streamlined discovery of medical services, consultations, and care resources',
     tags: ['Web Development', 'Healthcare', 'Frontend'],
-    githubUrl: 'https://github.com',
+    githubUrl: 'https://github.com/sahamedsajjadh666-dev',
   },
   {
     id: 'recycle-upcycling-site',
@@ -309,7 +310,7 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
     impactMetric: 'Circular Material Loop',
     impactContext: 'Bridging recyclable material pickup with practical everyday upcycling',
     tags: ['Sustainability', 'Web App', 'Product Design'],
-    githubUrl: 'https://github.com',
+    githubUrl: 'https://github.com/sahamedsajjadh666-dev',
   },
 ];
 
@@ -322,7 +323,7 @@ export const PUBLISHED_WORK = {
   coverAlt:
     'Dragon Superiors book cover artwork depicting a celestial dragon coiled around storm monoliths',
   blurb:
-    'Outside machine learning research and engineering, I authored Dragon Superiors—a fantasy-action novel exploring fractured sky-monoliths and dormant dragon bloodlines. Writing long-form fiction sharpens the same structural discipline I bring to complex software systems.',
+    'Beyond machine learning research and engineering, I am the author of Dragon Superiors, an original fantasy-action light novel. Through this project, I explore imaginative world-building, character development, and storytelling. Creating an original fictional universe has strengthened my creativity, attention to detail, and ability to develop complex ideas into a cohesive narrative.',
   excerptTag: 'PUBLISHED WORK · DRAGON SUPERIORS EXCERPT',
   sampleExcerpt: [
     {

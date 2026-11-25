@@ -2,12 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PORTFOLIO_PROJECTS } from '../data/portfolioData';
 import {
+  buildWhatsAppUrl,
   clampExcerptPage,
   computeBookTilt,
   computeCursorTilt,
+  computeVaporCharTiming,
   filterProjectsByTrack,
+  formatWhatsAppMessage,
+  generateVaporParticles,
   resolveInitialTheme,
   toggleThemeMode,
+  tokenizeHeadlineWords,
   validateContactForm,
 } from './portfolioLogic';
 
@@ -79,4 +84,48 @@ test('theme helpers resolve stored preference and toggle between light and dark'
   assert.equal(resolveInitialTheme('dark'), 'dark');
   assert.equal(toggleThemeMode('light'), 'dark');
   assert.equal(toggleThemeMode('dark'), 'light');
+});
+
+test('WhatsApp message formatter and URL builder encode contact fields properly', () => {
+  const payload = {
+    name: ' Aarav Nair ',
+    email: ' aarav@example.com ',
+    message: ' Interested in collaborating on a PyTorch & OpenCV project! ',
+  };
+  const formatted = formatWhatsAppMessage(payload);
+  assert.equal(
+    formatted,
+    'Hello Sajjadh, I reached out from your portfolio.\n\n*Name:* Aarav Nair\n*Email:* aarav@example.com\n*Message:* Interested in collaborating on a PyTorch & OpenCV project!',
+  );
+  const url = buildWhatsAppUrl(payload, '916369117287');
+  assert.ok(url.startsWith('https://wa.me/916369117287?text='));
+  assert.equal(
+    decodeURIComponent(url.split('?text=')[1]),
+    formatted,
+  );
+});
+
+test('Sakura Vapor helpers compute per-character scatter, word tokens, and vapor particles', () => {
+  const tokenized = tokenizeHeadlineWords('S. AHAMED SAJJADH');
+  assert.equal(tokenized.words.length, 3);
+  assert.equal(tokenized.totalChars, 17);
+  assert.equal(tokenized.words[0].chars.length, 2);
+  assert.equal(tokenized.words[1].chars[0].globalIndex, 3);
+  assert.equal(tokenized.words[1].chars[0].letterOrder, 2);
+  assert.equal(tokenized.words[2].chars[0].globalIndex, 10);
+  assert.equal(tokenized.words[2].chars[0].letterOrder, 8);
+
+  const t0 = computeVaporCharTiming(0, 0.72, 0.035);
+  const t1 = computeVaporCharTiming(1, 0.72, 0.035);
+  assert.equal(t0.initialBlur, 14);
+  assert.equal(t0.initialScale, 1.28);
+  assert.equal(t0.initialY, -14);
+  assert.equal(t0.delay, 0.72);
+  assert.equal(t1.delay, 0.755);
+
+  const particles = generateVaporParticles(16);
+  assert.equal(particles.length, 16);
+  assert.ok(particles.some((p) => p.kind === 'wisp'));
+  assert.ok(particles.some((p) => p.kind === 'petal'));
+  assert.ok(particles.every((p) => p.driftY < 0));
 });
